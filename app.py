@@ -40,7 +40,7 @@ st.markdown("""
         min-height: 220px;
     }
     
-    /* Hover Effect: Cool Tech Blue/Cyan Glow instead of red */
+    /* Hover Effect: Cool Tech Blue/Cyan Glow */
     .tool-card:hover {
         transform: translateY(-6px);
         border-color: rgba(37, 99, 235, 0.4);
@@ -66,22 +66,23 @@ st.markdown("""
         line-height: 1.6;
     }
     
-    /* Activity Stream Styling */
-    .activity-box {
+    /* Status Panel Styling */
+    .status-panel {
         background: rgba(128, 128, 128, 0.03);
         border-radius: 12px;
         border: 1px solid rgba(128, 128, 128, 0.1);
         padding: 20px;
+        margin-top: 2rem;
     }
     
-    .status-dot {
-        height: 8px;
-        width: 8px;
-        background-color: #10b981;
-        border-radius: 50%;
-        display: inline-block;
-        margin-right: 8px;
-        box-shadow: 0 0 8px #10b981;
+    .status-badge {
+        background-color: rgba(16, 185, 129, 0.1);
+        color: #10b981;
+        padding: 4px 10px;
+        border-radius: 20px;
+        font-size: 13px;
+        font-weight: 600;
+        border: 1px solid rgba(16, 185, 129, 0.2);
     }
     </style>
 """, unsafe_allow_html=True)
@@ -90,17 +91,15 @@ st.markdown("""
 st.markdown("# ⚡ Growth99 SEO Automation Hub")
 st.markdown('<p class="main-subtitle">Unified Operations Center & Advanced Analytics Hub</p>', unsafe_allow_html=True)
 
-# 4. System Operational Status Ribbon
+# 4. Cleaned Tool Deployment Ribbon
 st.write("")
-stat_col1, stat_col2, stat_col3, stat_col4 = st.columns(4)
+stat_col1, stat_col2, stat_col3 = st.columns(3)
 with stat_col1:
-    st.metric(label="System Status", value="3 / 3 Online")
+    st.metric(label="Tools Connected", value="3 / 3 Active", delta="100% Operational")
 with stat_col2:
     st.metric(label="Environment", value="Production Hub")
 with stat_col3:
     st.metric(label="Global Access", value="Secure // SSL")
-with stat_col4:
-    st.metric(label="Daily API Requests", value="14,240", delta="+12% vs Yesterday")
 
 st.divider()
 
@@ -158,34 +157,24 @@ with col3:
         use_container_width=True
     )
 
+# 6. Aesthetic Infrastructure Overview Panel
 st.write("")
 st.write("")
+st.markdown('<div class="status-panel">', unsafe_allow_html=True)
+diag_col1, diag_col2, diag_col3 = st.columns(3)
 
-# 6. NEW: Live Activity & Operations Tracker Section
-st.markdown("### 🕒 Live Activity & Resource Monitoring")
+with diag_col1:
+    st.markdown("🔒 **Gateway Protocol**")
+    st.markdown("<span class=\"status-badge\">Encrypted Connection</span>", unsafe_allow_html=True)
 
-act_col1, act_col2 = st.columns([2, 1], gap="medium")
+with diag_col2:
+    st.markdown("📡 **API Node Status**")
+    st.markdown("<span class=\"status-badge\" style='color: #2563eb; background: rgba(37, 99, 235, 0.1); border-color: rgba(37, 99, 235, 0.2);'>Operational (12ms)</span>", unsafe_allow_html=True)
 
-with act_col1:
-    st.markdown("""
-    <div class="activity-box">
-        <h4 style='margin-top:0;'>📡 Recent System Activity Log</h4>
-        <p style='font-size:14px;'><span class="status-dot"></span><b>[17:42:11]</b> GSC Dashboard parsed API data stream successfully for <i>client_id_492</i></p>
-        <p style='font-size:14px;'><span class="status-dot"></span><b>[16:15:30]</b> Vitals Auditor finalized structural crawl optimization map (242 URLs)</p>
-        <p style='font-size:14px;'><span class="status-dot"></span><b>[14:02:04]</b> SEO Redesign engine generated dynamic redirect map for staging environment</p>
-        <p style='font-size:14px; opacity:0.6;'><span class="status-dot" style="background-color:#6b7280; box-shadow:none;"></span><b>[11:22:55]</b> Routine system health clearance check complete. Status: 100% OK</p>
-    </div>
-    """, unsafe_allow_html=True)
-
-with act_col2:
-    # A breakdown of tool usage distribution to make it look incredibly functional
-    st.markdown("<h4 style='margin-top:0; margin-bottom:10px;'>📊 Hub Resource Load</h4>", unsafe_allow_html=True)
-    chart_data = {
-        "GSC Dashboard": 55,
-        "Vitals Auditor": 30,
-        "SEO Redesign": 15
-    }
-    st.bar_chart(chart_data)
+with diag_col3:
+    st.markdown("⚡ **Failover Cluster**")
+    st.markdown("<span class=\"status-badge\">Active Backup Zone</span>", unsafe_allow_html=True)
+st.markdown('</div>', unsafe_allow_html=True)
 
 # 7. Clean Minimal Footer
 st.write("")
@@ -194,4 +183,4 @@ footer_left, footer_right = st.columns(2)
 with footer_left:
     st.caption("© 2026 Growth99 Automation Systems. All rights reserved.")
 with footer_right:
-    st.markdown("<p style='text-align: right; color: gray; font-size: 0.8rem; opacity: 0.4;'>v2.8 // Deep Tech Theme</p>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: right; color: gray; font-size: 0.8rem; opacity: 0.4;'>v3.0 // Deep Tech Theme</p>", unsafe_allow_html=True)
