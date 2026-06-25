@@ -8,37 +8,39 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# 2. Custom CSS for Beautiful Cards & UI Enhancements
+# 2. Hybrid-Theme CSS (Adapts to Light & Dark Automatically)
 st.markdown("""
     <style>
-    /* Main background tweak for a clean look */
     .block-container {
         padding-top: 2rem;
         padding-bottom: 2rem;
     }
     
-    /* Custom Styling for the Tool Cards */
+    /* Dynamic Tool Cards using Streamlit CSS Variables */
     .tool-card {
-        background-color: #f8f9fa;
-        border: 1px solid #e9ecef;
+        /* Mixes a tiny bit of theme text color into the background for a premium tint */
+        background-color: rgba(128, 128, 128, 0.08);
+        
+        /* Semi-transparent border that works perfectly on white or black backgrounds */
+        border: 1px solid rgba(128, 128, 128, 0.2);
         border-radius: 12px;
         padding: 25px;
         margin-bottom: 20px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+        transition: all 0.3s ease;
         min-height: 220px;
     }
     
-    /* Hover effect to make it feel premium */
+    /* Premium Hover effect that uses Streamlit's primary theme color */
     .tool-card:hover {
         transform: translateY(-5px);
-        box-shadow: 0 12px 16px rgba(0, 0, 0, 0.1);
-        border-color: #ff4b4b;
+        box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
+        border-color: #ff4b4b; /* Glows up on hover */
     }
     
-    /* Card Title Styling */
+    /* Dynamically inherits the user's current theme text color */
     .tool-title {
-        color: #1c1c1e;
+        color: var(--text-color);
         font-size: 22px;
         font-weight: 700;
         margin-bottom: 10px;
@@ -47,21 +49,22 @@ st.markdown("""
         gap: 10px;
     }
     
-    /* Card Description Styling */
+    /* Slightly muted description text that remains readable in both modes */
     .tool-desc {
-        color: #48484a;
+        color: var(--text-color);
+        opacity: 0.85;
         font-size: 15px;
         line-height: 1.5;
         margin-bottom: 20px;
     }
     </style>
-""", unsafe_allow_html=True)  # <-- Fixed this line!
+""", unsafe_allow_html=True)
 
 # 3. Header Banner
 st.markdown("# 📈 Growth99 SEO Automation Hub")
 st.markdown("##### Your central command center for advanced search engine optimization and website performance auditing.")
 
-# Small Quick Stats Ribbon
+# Metrics Bar (Streamlit handles light/dark mode for these natively)
 st.write("")
 stat_col1, stat_col2, stat_col3, _ = st.columns([1, 1, 1, 2])
 with stat_col1:
@@ -74,7 +77,7 @@ with stat_col3:
 st.divider()
 st.write("")
 
-# 4. Create a 3-column layout for the beautifully designed cards
+# 4. 3-Column Layout
 col1, col2, col3 = st.columns(3, gap="large")
 
 # --- TOOL 1: SEO REDESIGN ---
@@ -136,4 +139,4 @@ footer_left, footer_right = st.columns(2)
 with footer_left:
     st.caption("© 2026 Growth99 Automation Systems. All rights reserved.")
 with footer_right:
-    st.markdown("<p style='text-align: right; color: gray; font-size: 0.8rem;'>Powered by Streamlit Enterprise</p>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: right; color: gray; font-size: 0.8rem; opacity: 0.6;'>Powered by Streamlit Enterprise</p>", unsafe_allow_html=True)
