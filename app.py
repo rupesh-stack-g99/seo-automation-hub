@@ -1,4 +1,5 @@
 import streamlit as st
+import time
 
 # 1. Page Configuration
 st.set_page_config(
@@ -102,18 +103,24 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# 3. Initialize Run Counters inside Session State
-if 'redesign_runs' not in st.session_state:
-    st.session_state.redesign_runs = 0
-if 'vitals_runs' not in st.session_state:
-    st.session_state.vitals_runs = 0
-if 'gsc_runs' not in st.session_state:
-    st.session_state.gsc_runs = 0
+# 3. Initialize Timestamped Lists in Session State
+if 'redesign_history' not in st.session_state:
+    st.session_state.redesign_history = []
+if 'vitals_history' not in st.session_state:
+    st.session_state.vitals_history = []
+if 'gsc_history' not in st.session_state:
+    st.session_state.gsc_history = []
 
-# Helper functions to increment runs and open links safely via JavaScript redirect
-def launch_tool(url, tool_key):
-    st.session_state[tool_key] += 1
-    # Using JS to cleanly pop a new window tab open safely on button submit triggers
+# Helper to clean up history and count clicks in the last 24 hours (86400 seconds)
+def get_rolling_24h_count(history_key):
+    current_time = time.time()
+    # Filter out timestamps older than 24 hours
+    st.session_state[history_key] = [t for t in st.session_state[history_key] if current_time - t < 86400]
+    return len(st.session_state[history_key])
+
+# Trigger function for launching a tool
+def log_launch_and_redirect(url, history_key):
+    st.session_state[history_key].append(time.time())
     js = f"window.open('{url}', '_blank');"
     st.components.v1.html(f"<script>{js}</script>", height=0, width=0)
     st.rerun()
@@ -149,7 +156,7 @@ with col1:
         </div>
     """, unsafe_allow_html=True)
     if st.button("Deploy Framework ↗️", key="btn_redesign", use_container_width=True, type="primary"):
-        launch_tool("https://seo-redesign-growth99.streamlit.app/", "redesign_runs")
+        log_launch_and_redirect("https://seo-redesign-growth99.streamlit.app/", "redesign_history")
 
 with col2:
     st.markdown("""
@@ -161,7 +168,7 @@ with col2:
         </div>
     """, unsafe_allow_html=True)
     if st.button("Execute Audit ↗️", key="btn_vitals", use_container_width=True, type="primary"):
-        launch_tool("https://seo-vitals-auditor-24rd7b8c5wqqphqrs8nbhm.streamlit.app/", "vitals_runs")
+        log_launch_and_redirect("https://seo-vitals-auditor-24rd7b8c5wqqphqrs8nbhm.streamlit.app/", "vitals_history")
 
 with col3:
     st.markdown("""
@@ -173,24 +180,29 @@ with col3:
         </div>
     """, unsafe_allow_html=True)
     if st.button("Open Analytics ↗️", key="btn_gsc", use_container_width=True, type="primary"):
-        launch_tool("https://gsc-seo-dashboard-growth99.streamlit.app/", "gsc_runs")
+        log_launch_and_redirect("https://gsc-seo-dashboard-growth99.streamlit.app/", "gsc_history")
 
 st.write("")
 st.write("")
 st.divider()
 
-# 7. Dynamic Session Metrics (Cleaned up: Removed confusing delta growth indicators)
-st.markdown("### 📊 Operational Launch Logs (Current Session)")
-st.caption("This counts exactly how many times a tool has been successfully deployed during your session.")
+# 7. Get calculated rolling 24 hour totals
+count_redesign = get_rolling_24h_count("redesign_history")
+count_vitals = get_rolling_24h_count("vitals_history")
+count_gsc = get_rolling_24h_count("gsc_history")
+
+# Dynamic Activity Logs Group
+st.markdown("### 🕒 Real-time Launch Logs (Rolling 24 Hours)")
+st.caption("Tracks exactly how many times each system module has been initialized over a true 24-hour window.")
 st.write("")
 
 vol_col1, vol_col2, vol_col3 = st.columns(3)
 with vol_col1:
-    st.metric(label="🎨 SEO Redesign Launches", value=f"{st.session_state.redesign_runs} Runs")
+    st.metric(label="🎨 SEO Redesign Activity", value=f"{count_redesign} Runs")
 with vol_col2:
-    st.metric(label="🩺 Vitals Auditor Launches", value=f"{st.session_state.vitals_runs} Runs")
+    st.metric(label="🩺 Vitals Auditor Activity", value=f"{count_vitals} Runs")
 with vol_col3:
-    st.metric(label="📊 GSC Dashboard Launches", value=f"{st.session_state.gsc_runs} Runs")
+    st.metric(label="📊 GSC Dashboard Activity", value=f"{count_gsc} Runs")
 
 st.write("")
 st.write("")
@@ -229,4 +241,4 @@ footer_left, footer_right = st.columns(2)
 with footer_left:
     st.caption("© 2026 Growth99 Automation Systems. All rights reserved.")
 with footer_right:
-    st.markdown("<p style='text-align: right; color: gray; font-size: 0.8rem; opacity: 0.4;'>v3.5 // Live Interaction Script</p>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: right; color: gray; font-size: 0.8rem; opacity: 0.4;'>v3.6 // 24H Rolling Registry</p>", unsafe_allow_html=True)
