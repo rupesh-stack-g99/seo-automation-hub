@@ -8,7 +8,7 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# 2. Premium Blue/Emerald Tech CSS
+# 2. Premium Blue/Emerald Tech CSS (Optimized for Light & Dark)
 st.markdown("""
     <style>
     .block-container {
@@ -65,32 +65,43 @@ st.markdown("""
         line-height: 1.6;
     }
     
-    /* Elegant status metrics layout styling */
-    .metric-row-title {
-        font-size: 14px;
-        font-weight: 600;
-        opacity: 0.8;
-        margin-bottom: 4px;
+    /* Re-engineered Clean Status Infrastructure Cards */
+    .infra-card {
+        background: rgba(128, 128, 128, 0.04);
+        border: 1px solid rgba(128, 128, 128, 0.12);
+        border-radius: 14px;
+        padding: 22px;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.01);
     }
     
+    .infra-title {
+        font-size: 15px;
+        font-weight: 600;
+        margin-bottom: 12px;
+        color: var(--text-color);
+    }
+
     .status-badge-green {
-        background-color: rgba(16, 185, 129, 0.1);
+        background-color: rgba(16, 185, 129, 0.12);
         color: #10b981;
-        padding: 6px 14px;
+        padding: 6px 16px;
         border-radius: 20px;
         font-size: 13px;
         font-weight: 600;
-        border: 1px solid rgba(16, 185, 129, 0.2);
+        border: 1px solid rgba(16, 185, 129, 0.25);
+        display: inline-block;
     }
     
     .status-badge-blue {
-        background-color: rgba(37, 99, 235, 0.1);
+        background-color: rgba(37, 99, 235, 0.12);
         color: #2563eb;
-        padding: 6px 14px;
+        padding: 6px 16px;
         border-radius: 20px;
         font-size: 13px;
         font-weight: 600;
-        border: 1px solid rgba(37, 99, 235, 0.2);
+        border: 1px solid rgba(37, 99, 235, 0.25);
+        display: inline-block;
     }
     </style>
 """, unsafe_allow_html=True)
@@ -154,38 +165,48 @@ st.write("")
 st.write("")
 st.divider()
 
-# 6. Beautiful Minimalist Request Distribution Visual (Replaces the ugly line graph)
-st.markdown("### 📊 Operational Volume Distribution (Last 24 Hours)")
-st.caption("Proportional breakdown of system tasks processed successfully across current frameworks.")
-
+# 6. Premium SaaS Activity Distribution Grid (No confusing progress bars!)
+st.markdown("### 📊 Operational Volume Breakdown (Last 24 Hours)")
+st.caption("Successful tracking logs executed across each active operational hub.")
 st.write("")
-# Using clean native progress layouts to represent volume distribution beautifully
-st.markdown("<div class='metric-row-title'>📈 GSC Dashboard Tracking (1,450 Requests Passed)</div>", unsafe_allow_html=True)
-st.progress(0.65)  # Takes up 65% of volume
 
-st.markdown("<div class='metric-row-title'>🩺 Vitals Auditor Diagnostic (620 Requests Passed)</div>", unsafe_allow_html=True)
-st.progress(0.25)  # Takes up 25% of volume
-
-st.markdown("<div class='metric-row-title'>🎨 SEO Redesign Validation (210 Requests Passed)</div>", unsafe_allow_html=True)
-st.progress(0.10)  # Takes up 10% of volume
+vol_col1, vol_col2, vol_col3 = st.columns(3)
+with vol_col1:
+    st. some_metric = st.metric(label="📊 GSC Dashboard Volume", value="1,450 Runs", delta="Primary Node")
+with vol_col2:
+    st. some_metric2 = st.metric(label="🩺 Vitals Auditor Volume", value="620 Runs", delta="Secondary Node")
+with vol_col3:
+    st. some_metric3 = st.metric(label="🎨 SEO Redesign Volume", value="210 Runs", delta="On-Demand Node")
 
 st.write("")
 st.write("")
 
-# 7. Re-Engineered Status Tray (Fixed layout issue entirely by dropping raw container wrappers)
-diag_col1, diag_col2, diag_col3 = st.columns(3)
+# 7. Fixed & Uniform Infrastructure Overview Panels (Second Image Redesign)
+infra_col1, infra_col2, infra_col3 = st.columns(3, gap="medium")
 
-with diag_col1:
-    st.markdown("🔒 **Gateway Protocol**")
-    st.markdown("<span class=\"status-badge-green\">Encrypted Connection</span>", unsafe_allow_html=True)
+with infra_col1:
+    st.markdown("""
+        <div class="infra-card">
+            <div class="infra-title">🔒 Gateway Protocol</div>
+            <span class="status-badge-green">Encrypted Connection</span>
+        </div>
+    """, unsafe_allow_html=True)
 
-with diag_col2:
-    st.markdown("📡 **Data Node Status**")
-    st.markdown("<span class=\"status-badge-blue\">Operational (12ms)</span>", unsafe_allow_html=True)
+with infra_col2:
+    st.markdown("""
+        <div class="infra-card">
+            <div class="infra-title">📡 Data Node Status</div>
+            <span class="status-badge-blue">Operational (12ms)</span>
+        </div>
+    """, unsafe_allow_html=True)
 
-with diag_col3:
-    st.markdown("⚡ **Failover Cluster**")
-    st.markdown("<span class=\"status-badge-green\">Active Backup Zone</span>", unsafe_allow_html=True)
+with infra_col3:
+    st.markdown("""
+        <div class="infra-card">
+            <div class="infra-title">⚡ Failover Cluster</div>
+            <span class="status-badge-green">Active Backup Zone</span>
+        </div>
+    """, unsafe_allow_html=True)
 
 # 8. Footer
 st.write("")
@@ -194,4 +215,4 @@ footer_left, footer_right = st.columns(2)
 with footer_left:
     st.caption("© 2026 Growth99 Automation Systems. All rights reserved.")
 with footer_right:
-    st.markdown("<p style='text-align: right; color: gray; font-size: 0.8rem; opacity: 0.4;'>v3.3 // Precision Interface Update</p>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: right; color: gray; font-size: 0.8rem; opacity: 0.4;'>v3.4 // Clean UI Architecture</p>", unsafe_allow_html=True)
