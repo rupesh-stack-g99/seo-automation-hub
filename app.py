@@ -8,7 +8,7 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# 2. Premium Blue/Emerald Tech CSS
+# 2. Premium Cleaned CSS (Optimized for Light & Dark)
 st.markdown("""
     <style>
     .block-container {
@@ -63,15 +63,6 @@ st.markdown("""
         opacity: 0.78;
         font-size: 15px;
         line-height: 1.6;
-    }
-    
-    /* Premium Static Utility Directory Panel */
-    .directory-panel {
-        background: rgba(128, 128, 128, 0.03);
-        border-radius: 12px;
-        border: 1px solid rgba(128, 128, 128, 0.1);
-        padding: 24px;
-        margin-top: 1rem;
     }
     </style>
 """, unsafe_allow_html=True)
@@ -134,32 +125,34 @@ st.write("")
 st.write("")
 st.divider()
 
-# 6. NEW Replacement Section: Clean Global Directory & Specifications
-st.markdown("### 📁 Platform Manifest & Operational Resources")
-st.caption("Central technical configurations and architectural references for the Growth99 automation network.")
-
+# 6. Sleek Tabbed Resource Navigator (Replaces the messy blocks and removes the black box completely)
+st.markdown("### 📁 Platform Manifest & System Infrastructure")
 st.write("")
-st.markdown('<div class="directory-panel">', unsafe_allow_html=True)
-dir_col1, dir_col2, dir_col3 = st.columns(3)
 
-with dir_col1:
-    st.markdown("📋 **Documentation Registry**")
-    st.caption("Access central configuration guides, structural schema onboarding guidelines, and platform migration playbooks.")
+# Building native layout elements to guarantee perfect alignment
+with st.container():
+    tab1, tab2, tab3 = st.tabs(["📋 Documentation Registry", "🔒 Compliance & Encryption", "⚙️ Global Network Cluster"])
+    
+    with tab1:
+        st.write("")
+        st.markdown("**Central Knowledge Hub**")
+        st.info("Access comprehensive platform configuration guides, technical layout metrics, automated structural schema onboarding guidelines, and environment platform migration playbooks.")
+        
+    with tab2:
+        st.write("")
+        st.markdown("**Security & Transit Specifications**")
+        st.success("End-to-end industry standard SSL protocols are active. Data processing pipelines connecting external platform engine arrays are fully sandboxed and logically isolated.")
+        
+    with tab3:
+        st.write("")
+        st.markdown("**Topology Architecture**")
+        st.warning("Running on an isolated, distributed microservices network topology. Individual runtime environments are actively maintained via secure remote server tracking endpoints.")
 
-with dir_col2:
-    st.markdown("🔒 **Compliance & Encryption**")
-    st.caption("End-to-end SSL protocols active. Data streaming tunnels between Google Search Console engines are fully isolated.")
-
-with dir_col3:
-    st.markdown("⚙️ **Global Network Cluster**")
-    st.caption("Distributed microservice topology. Individual module instances are managed via secure remote origin nodes.")
-st.markdown('</div>', unsafe_allow_html=True)
-
-# 7. Footer
+# 7. Clean Minimalist Footer
 st.write("")
 st.divider()
 footer_left, footer_right = st.columns(2)
 with footer_left:
     st.caption("© 2026 Growth99 Automation Systems. All rights reserved.")
 with footer_right:
-    st.markdown("<p style='text-align: right; color: gray; font-size: 0.8rem; opacity: 0.4;'>v4.0 // Enterprise Minimalist Build</p>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: right; color: gray; font-size: 0.8rem; opacity: 0.4;'>v4.1 // Precision Native View</p>", unsafe_allow_html=True)
