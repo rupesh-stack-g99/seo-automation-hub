@@ -33,7 +33,7 @@ st.markdown("""
     .tool-card:hover {
         transform: translateY(-5px);
         box-shadow: 0 12px 16px rgba(0, 0, 0, 0.1);
-        border-color: #ff4b4b; /* Streamlit's signature red, or use your brand color */
+        border-color: #ff4b4b;
     }
     
     /* Card Title Styling */
@@ -55,13 +55,13 @@ st.markdown("""
         margin-bottom: 20px;
     }
     </style>
-""", unsafe_index=True)
+""", unsafe_allow_html=True)  # <-- Fixed this line!
 
 # 3. Header Banner
 st.markdown("# 📈 Growth99 SEO Automation Hub")
 st.markdown("##### Your central command center for advanced search engine optimization and website performance auditing.")
 
-# Small Quick Stats Ribbon just to make it look like a high-end dashboard
+# Small Quick Stats Ribbon
 st.write("")
 stat_col1, stat_col2, stat_col3, _ = st.columns([1, 1, 1, 2])
 with stat_col1:
@@ -86,12 +86,12 @@ with col1:
                 Safeguard traffic and organic rankings during site migrations or UI overhauls. Track structural changes and monitor URL mapping smoothly.
             </div>
         </div>
-    """, unsafe_html=True)
+    """, unsafe_allow_html=True)
     st.link_button(
         "Launch Redesign Tool 🚀", 
         "https://seo-redesign-growth99.streamlit.app/",
         use_container_width=True,
-        type="primary" # Makes the button pop out with full color
+        type="primary"
     )
 
 # --- TOOL 2: SEO VITALS AUDITOR ---
@@ -103,7 +103,7 @@ with col2:
                 Audit Core Web Vitals, page speed performance, and crucial technical on-page health factors instantly to ensure peak search engine crawlability.
             </div>
         </div>
-    """, unsafe_html=True)
+    """, unsafe_allow_html=True)
     st.link_button(
         "Launch Auditor Tool 🔬", 
         "https://seo-vitals-auditor-24rd7b8c5wqqphqrs8nbhm.streamlit.app/",
@@ -120,7 +120,7 @@ with col3:
                 Deep dive into your Google Search Console API. Uncover hidden query trends, analyze click-through rates (CTR), and track keyword impressions.
             </div>
         </div>
-    """, unsafe_html=True)
+    """, unsafe_allow_html=True)
     st.link_button(
         "Launch GSC Analytics 📉", 
         "https://gsc-seo-dashboard-growth99.streamlit.app/",
@@ -136,4 +136,4 @@ footer_left, footer_right = st.columns(2)
 with footer_left:
     st.caption("© 2026 Growth99 Automation Systems. All rights reserved.")
 with footer_right:
-    st.markdown("<p style='text-align: right; color: gray; font-size: 0.8rem;'>Powered by Streamlit Enterprise</p>", unsafe_html=True)
+    st.markdown("<p style='text-align: right; color: gray; font-size: 0.8rem;'>Powered by Streamlit Enterprise</p>", unsafe_allow_html=True)
