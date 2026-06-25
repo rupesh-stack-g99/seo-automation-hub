@@ -8,7 +8,7 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# 2. Premium Blue/Emerald Tech CSS (Optimized for Light & Dark)
+# 2. Premium Blue/Emerald Tech CSS
 st.markdown("""
     <style>
     .block-container {
@@ -16,7 +16,6 @@ st.markdown("""
         padding-bottom: 3rem;
     }
     
-    /* Modern Subtitle Gradient text */
     .main-subtitle {
         background: linear-gradient(90deg, #2563eb, #10b981);
         -webkit-background-clip: text;
@@ -26,7 +25,6 @@ st.markdown("""
         margin-bottom: 2rem;
     }
     
-    /* Glassmorphism Card Container */
     .tool-card {
         background: rgba(128, 128, 128, 0.05);
         backdrop-filter: blur(10px);
@@ -65,14 +63,12 @@ st.markdown("""
         line-height: 1.6;
     }
     
-    /* Re-engineered Clean Status Infrastructure Cards */
     .infra-card {
         background: rgba(128, 128, 128, 0.04);
         border: 1px solid rgba(128, 128, 128, 0.12);
         border-radius: 14px;
         padding: 22px;
         text-align: center;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.01);
     }
     
     .infra-title {
@@ -106,12 +102,27 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# 3. Header Banner
+# 3. Initialize Run Counters inside Session State
+if 'redesign_runs' not in st.session_state:
+    st.session_state.redesign_runs = 0
+if 'vitals_runs' not in st.session_state:
+    st.session_state.vitals_runs = 0
+if 'gsc_runs' not in st.session_state:
+    st.session_state.gsc_runs = 0
+
+# Helper functions to increment runs and open links safely via JavaScript redirect
+def launch_tool(url, tool_key):
+    st.session_state[tool_key] += 1
+    # Using JS to cleanly pop a new window tab open safely on button submit triggers
+    js = f"window.open('{url}', '_blank');"
+    st.components.v1.html(f"<script>{js}</script>", height=0, width=0)
+    st.rerun()
+
+# 4. Header Banner
 st.markdown("# ⚡ Growth99 SEO Automation Hub")
 st.markdown('<p class="main-subtitle">Unified Operations Center & Advanced Analytics Hub</p>', unsafe_allow_html=True)
 
-# 4. Tool Deployment Ribbon
-st.write("")
+# 5. Tool Deployment Ribbon
 stat_col1, stat_col2, stat_col3 = st.columns(3)
 with stat_col1:
     st.metric(label="Tools Connected", value="3 / 3 Active", delta="100% Operational")
@@ -122,7 +133,7 @@ with stat_col3:
 
 st.divider()
 
-# 5. Core Applications Section
+# 6. Core Applications Section
 st.markdown("### 🛠️ Core SEO Frameworks")
 st.write("")
 
@@ -137,7 +148,8 @@ with col1:
             </div>
         </div>
     """, unsafe_allow_html=True)
-    st.link_button("Deploy Framework ↗️", "https://seo-redesign-growth99.streamlit.app/", use_container_width=True)
+    if st.button("Deploy Framework ↗️", key="btn_redesign", use_container_width=True, type="primary"):
+        launch_tool("https://seo-redesign-growth99.streamlit.app/", "redesign_runs")
 
 with col2:
     st.markdown("""
@@ -148,7 +160,8 @@ with col2:
             </div>
         </div>
     """, unsafe_allow_html=True)
-    st.link_button("Execute Audit ↗️", "https://seo-vitals-auditor-24rd7b8c5wqqphqrs8nbhm.streamlit.app/", use_container_width=True)
+    if st.button("Execute Audit ↗️", key="btn_vitals", use_container_width=True, type="primary"):
+        launch_tool("https://seo-vitals-auditor-24rd7b8c5wqqphqrs8nbhm.streamlit.app/", "vitals_runs")
 
 with col3:
     st.markdown("""
@@ -159,29 +172,30 @@ with col3:
             </div>
         </div>
     """, unsafe_allow_html=True)
-    st.link_button("Open Analytics ↗️", "https://gsc-seo-dashboard-growth99.streamlit.app/", use_container_width=True)
+    if st.button("Open Analytics ↗️", key="btn_gsc", use_container_width=True, type="primary"):
+        launch_tool("https://gsc-seo-dashboard-growth99.streamlit.app/", "gsc_runs")
 
 st.write("")
 st.write("")
 st.divider()
 
-# 6. Premium SaaS Activity Distribution Grid (No confusing progress bars!)
-st.markdown("### 📊 Operational Volume Breakdown (Last 24 Hours)")
-st.caption("Successful tracking logs executed across each active operational hub.")
+# 7. Dynamic Session Metrics (Cleaned up: Removed confusing delta growth indicators)
+st.markdown("### 📊 Operational Launch Logs (Current Session)")
+st.caption("This counts exactly how many times a tool has been successfully deployed during your session.")
 st.write("")
 
 vol_col1, vol_col2, vol_col3 = st.columns(3)
 with vol_col1:
-    st. some_metric = st.metric(label="📊 GSC Dashboard Volume", value="1,450 Runs", delta="Primary Node")
+    st.metric(label="🎨 SEO Redesign Launches", value=f"{st.session_state.redesign_runs} Runs")
 with vol_col2:
-    st. some_metric2 = st.metric(label="🩺 Vitals Auditor Volume", value="620 Runs", delta="Secondary Node")
+    st.metric(label="🩺 Vitals Auditor Launches", value=f"{st.session_state.vitals_runs} Runs")
 with vol_col3:
-    st. some_metric3 = st.metric(label="🎨 SEO Redesign Volume", value="210 Runs", delta="On-Demand Node")
+    st.metric(label="📊 GSC Dashboard Launches", value=f"{st.session_state.gsc_runs} Runs")
 
 st.write("")
 st.write("")
 
-# 7. Fixed & Uniform Infrastructure Overview Panels (Second Image Redesign)
+# 8. Infrastructure Overview Panels
 infra_col1, infra_col2, infra_col3 = st.columns(3, gap="medium")
 
 with infra_col1:
@@ -208,11 +222,11 @@ with infra_col3:
         </div>
     """, unsafe_allow_html=True)
 
-# 8. Footer
+# 9. Footer
 st.write("")
 st.divider()
 footer_left, footer_right = st.columns(2)
 with footer_left:
     st.caption("© 2026 Growth99 Automation Systems. All rights reserved.")
 with footer_right:
-    st.markdown("<p style='text-align: right; color: gray; font-size: 0.8rem; opacity: 0.4;'>v3.4 // Clean UI Architecture</p>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: right; color: gray; font-size: 0.8rem; opacity: 0.4;'>v3.5 // Live Interaction Script</p>", unsafe_allow_html=True)
