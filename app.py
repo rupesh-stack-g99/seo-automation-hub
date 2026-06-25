@@ -1,7 +1,4 @@
 import streamlit as st
-import pandas as pd
-import numpy as np
-import datetime
 
 # 1. Page Configuration
 st.set_page_config(
@@ -68,16 +65,15 @@ st.markdown("""
         line-height: 1.6;
     }
     
-    /* Sleek Bottom Status Bar Styling */
-    .status-panel-clean {
-        background: rgba(128, 128, 128, 0.04);
-        border-radius: 12px;
-        border: 1px solid rgba(128, 128, 128, 0.12);
-        padding: 20px;
-        margin-top: 2rem;
+    /* Elegant status metrics layout styling */
+    .metric-row-title {
+        font-size: 14px;
+        font-weight: 600;
+        opacity: 0.8;
+        margin-bottom: 4px;
     }
     
-    .status-badge {
+    .status-badge-green {
         background-color: rgba(16, 185, 129, 0.1);
         color: #10b981;
         padding: 6px 14px;
@@ -85,8 +81,16 @@ st.markdown("""
         font-size: 13px;
         font-weight: 600;
         border: 1px solid rgba(16, 185, 129, 0.2);
-        display: inline-block;
-        margin-top: 5px;
+    }
+    
+    .status-badge-blue {
+        background-color: rgba(37, 99, 235, 0.1);
+        color: #2563eb;
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-size: 13px;
+        font-weight: 600;
+        border: 1px solid rgba(37, 99, 235, 0.2);
     }
     </style>
 """, unsafe_allow_html=True)
@@ -148,43 +152,40 @@ with col3:
 
 st.write("")
 st.write("")
+st.divider()
 
-# 6. NEW: Aesthetic Last 24-Hour Traffic Activity Chart
-st.markdown("### 📈 Hub Processing Volume (Last 24 Hours)")
-st.caption("Real-time telemetry showing successful operational requests processed across all active modules.")
+# 6. Beautiful Minimalist Request Distribution Visual (Replaces the ugly line graph)
+st.markdown("### 📊 Operational Volume Distribution (Last 24 Hours)")
+st.caption("Proportional breakdown of system tasks processed successfully across current frameworks.")
 
-# Generating mock 24-hour time series chart data smoothly
-now = datetime.datetime.now()
-time_index = [now - datetime.timedelta(hours=i) for i in range(24)]
-time_index.reverse()
+st.write("")
+# Using clean native progress layouts to represent volume distribution beautifully
+st.markdown("<div class='metric-row-title'>📈 GSC Dashboard Tracking (1,450 Requests Passed)</div>", unsafe_allow_html=True)
+st.progress(0.65)  # Takes up 65% of volume
 
-chart_df = pd.DataFrame({
-    'Hour': [t.strftime('%H:00') for t in time_index],
-    'SEO Redesign': np.random.randint(15, 45, size=24),
-    'Vitals Auditor': np.random.randint(40, 95, size=24),
-    'GSC Dashboard': np.random.randint(70, 160, size=24)
-})
-chart_df.set_index('Hour', inplace=True)
+st.markdown("<div class='metric-row-title'>🩺 Vitals Auditor Diagnostic (620 Requests Passed)</div>", unsafe_allow_html=True)
+st.progress(0.25)  # Takes up 25% of volume
 
-# Render premium line chart
-st.line_chart(chart_df, height=280)
+st.markdown("<div class='metric-row-title'>🎨 SEO Redesign Validation (210 Requests Passed)</div>", unsafe_allow_html=True)
+st.progress(0.10)  # Takes up 10% of volume
 
-# 7. Integrated Status Tray
-st.markdown('<div class="status-panel-clean">', unsafe_allow_html=True)
+st.write("")
+st.write("")
+
+# 7. Re-Engineered Status Tray (Fixed layout issue entirely by dropping raw container wrappers)
 diag_col1, diag_col2, diag_col3 = st.columns(3)
 
 with diag_col1:
     st.markdown("🔒 **Gateway Protocol**")
-    st.markdown("<span class=\"status-badge\">Encrypted Connection</span>", unsafe_allow_html=True)
+    st.markdown("<span class=\"status-badge-green\">Encrypted Connection</span>", unsafe_allow_html=True)
 
 with diag_col2:
     st.markdown("📡 **Data Node Status**")
-    st.markdown("<span class=\"status-badge\" style='color: #2563eb; background: rgba(37, 99, 235, 0.1); border-color: rgba(37, 99, 235, 0.2);'>Operational (12ms)</span>", unsafe_allow_html=True)
+    st.markdown("<span class=\"status-badge-blue\">Operational (12ms)</span>", unsafe_allow_html=True)
 
 with diag_col3:
     st.markdown("⚡ **Failover Cluster**")
-    st.markdown("<span class=\"status-badge\">Active Backup Zone</span>", unsafe_allow_html=True)
-st.markdown('</div>', unsafe_allow_html=True)
+    st.markdown("<span class=\"status-badge-green\">Active Backup Zone</span>", unsafe_allow_html=True)
 
 # 8. Footer
 st.write("")
@@ -193,4 +194,4 @@ footer_left, footer_right = st.columns(2)
 with footer_left:
     st.caption("© 2026 Growth99 Automation Systems. All rights reserved.")
 with footer_right:
-    st.markdown("<p style='text-align: right; color: gray; font-size: 0.8rem; opacity: 0.4;'>v3.2 // Dynamic Chart Metrics</p>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: right; color: gray; font-size: 0.8rem; opacity: 0.4;'>v3.3 // Precision Interface Update</p>", unsafe_allow_html=True)
