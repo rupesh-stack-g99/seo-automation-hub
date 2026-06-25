@@ -111,19 +111,15 @@ if 'vitals_history' not in st.session_state:
 if 'gsc_history' not in st.session_state:
     st.session_state.gsc_history = []
 
-# Helper to clean up history and count clicks in the last 24 hours (86400 seconds)
+# Helper to clean history and count clicks over rolling 24 hours
 def get_rolling_24h_count(history_key):
     current_time = time.time()
-    # Filter out timestamps older than 24 hours
     st.session_state[history_key] = [t for t in st.session_state[history_key] if current_time - t < 86400]
     return len(st.session_state[history_key])
 
-# Trigger function for launching a tool
-def log_launch_and_redirect(url, history_key):
+# Callback function to log background clicks instantly before opening links
+def track_click(history_key):
     st.session_state[history_key].append(time.time())
-    js = f"window.open('{url}', '_blank');"
-    st.components.v1.html(f"<script>{js}</script>", height=0, width=0)
-    st.rerun()
 
 # 4. Header Banner
 st.markdown("# ⚡ Growth99 SEO Automation Hub")
@@ -155,8 +151,15 @@ with col1:
             </div>
         </div>
     """, unsafe_allow_html=True)
-    if st.button("Deploy Framework ↗️", key="btn_redesign", use_container_width=True, type="primary"):
-        log_launch_and_redirect("https://seo-redesign-growth99.streamlit.app/", "redesign_history")
+    # Using link_button with on_click logs data to session_state flawlessly
+    st.link_button(
+        "Deploy Framework ↗️", 
+        "https://seo-redesign-growth99.streamlit.app/", 
+        use_container_width=True, 
+        type="primary",
+        on_click=track_click,
+        args=("redesign_history",)
+    )
 
 with col2:
     st.markdown("""
@@ -167,8 +170,14 @@ with col2:
             </div>
         </div>
     """, unsafe_allow_html=True)
-    if st.button("Execute Audit ↗️", key="btn_vitals", use_container_width=True, type="primary"):
-        log_launch_and_redirect("https://seo-vitals-auditor-24rd7b8c5wqqphqrs8nbhm.streamlit.app/", "vitals_history")
+    st.link_button(
+        "Execute Audit ↗️", 
+        "https://seo-vitals-auditor-24rd7b8c5wqqphqrs8nbhm.streamlit.app/", 
+        use_container_width=True, 
+        type="primary",
+        on_click=track_click,
+        args=("vitals_history",)
+    )
 
 with col3:
     st.markdown("""
@@ -179,14 +188,20 @@ with col3:
             </div>
         </div>
     """, unsafe_allow_html=True)
-    if st.button("Open Analytics ↗️", key="btn_gsc", use_container_width=True, type="primary"):
-        log_launch_and_redirect("https://gsc-seo-dashboard-growth99.streamlit.app/", "gsc_history")
+    st.link_button(
+        "Open Analytics ↗️", 
+        "https://gsc-seo-dashboard-growth99.streamlit.app/", 
+        use_container_width=True, 
+        type="primary",
+        on_click=track_click,
+        args=("gsc_history",)
+    )
 
 st.write("")
 st.write("")
 st.divider()
 
-# 7. Get calculated rolling 24 hour totals
+# 7. Calculate rolling 24 hour totals
 count_redesign = get_rolling_24h_count("redesign_history")
 count_vitals = get_rolling_24h_count("vitals_history")
 count_gsc = get_rolling_24h_count("gsc_history")
@@ -241,4 +256,4 @@ footer_left, footer_right = st.columns(2)
 with footer_left:
     st.caption("© 2026 Growth99 Automation Systems. All rights reserved.")
 with footer_right:
-    st.markdown("<p style='text-align: right; color: gray; font-size: 0.8rem; opacity: 0.4;'>v3.6 // 24H Rolling Registry</p>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: right; color: gray; font-size: 0.8rem; opacity: 0.4;'>v3.7 // Link Callback Stability</p>", unsafe_allow_html=True)
