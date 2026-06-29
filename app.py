@@ -1,5 +1,4 @@
 import streamlit as st
-import random
 
 # 1. Page Configuration
 st.set_page_config(
@@ -64,6 +63,13 @@ st.markdown("""
         opacity: 0.78;
         font-size: 15px;
         line-height: 1.6;
+    }
+    
+    /* Clean Centered Metrics Container */
+    .counter-wrapper {
+        text-align: center;
+        padding: 20px;
+        margin-top: 15px;
     }
     </style>
 """, unsafe_allow_html=True)
@@ -152,18 +158,18 @@ st.write("")
 st.write("")
 st.divider()
 
-# 7. NEW: Box-Less App Views Analytics Panel
-st.markdown("### 📈 Hub Traffic & App Views")
-st.caption("Aggregated analytics mapping individual framework views over the last 24-hour cycle.")
+# 7. Exact Real-time Platform Visitor Counter Badge
+st.markdown("### 📈 Live Infrastructure Analytics")
 st.write("")
 
-view_col1, view_col2, view_col3 = st.columns(3)
-with view_col1:
-    st.metric(label="👥 Total Unique Visitors", value="1,420 Users", delta="+8% Organic Increase")
-with view_col2:
-    st.metric(label="👀 Total Hub Views", value="3,840 Impressions", delta="+14% Active Sessions")
-with view_col3:
-    st.metric(label="⚡ Average Session Duration", value="4m 12s", delta="Healthy Retention")
+counter_left, counter_center, counter_right = st.columns([1, 2, 1])
+
+with counter_center:
+    st.markdown('<div class="counter-wrapper">', unsafe_allow_html=True)
+    # Using dynamic shields server tracking API mapped to your custom dashboard endpoint
+    st.image("https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgrowth99-seo-hub-automation.streamlit.app&count_bg=%2B10B981&title_bg=%2B1E293B&style=for-the-badge&title=TOTAL+PLATFORM+VISITS&edge_flat=false")
+    st.caption("Live traffic counters are handled via standard endpoint tracking. Clicks and page updates are counted live.")
+    st.markdown('</div>', unsafe_allow_html=True)
 
 # 8. Clean Minimalist Footer
 st.write("")
@@ -172,4 +178,4 @@ footer_left, footer_right = st.columns(2)
 with footer_left:
     st.caption("© 2026 Growth99 Automation Systems. All rights reserved.")
 with footer_right:
-    st.markdown("<p style='text-align: right; color: gray; font-size: 0.8rem; opacity: 0.4;'>v4.3 // Precision Native View</p>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: right; color: gray; font-size: 0.8rem; opacity: 0.4;'>v4.4 // Production Traffic Tracking</p>", unsafe_allow_html=True)
