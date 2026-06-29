@@ -97,11 +97,7 @@ st.markdown("# ⚡ Growth99 SEO Automation Hub")
 st.markdown('<p class="main-subtitle">Unified Operations Center & Advanced Analytics Hub</p>', unsafe_allow_html=True)
 
 # 5. Tool Deployment Ribbon
-stat_col1, stat_col2 = st.columns(2)
-with stat_col1:
-    st.metric(label="Tools Connected", value="3 / 3 Active", delta="100% Operational")
-with stat_col2:
-    st.metric(label="Global Access", value="Secure // SSL")
+st.metric(label="Tools Connected", value="3 / 3 Active", delta="100% Operational")
 
 st.divider()
 
@@ -125,13 +121,13 @@ with col1:
 with col2:
     st.markdown("""
         <div class="tool-card">
-            <div class="tool-title">🩺 Vitals Auditor</div>
+            <div class="tool-title">⚡ Page Speed</div>
             <div class="tool-desc">
                 Instantly audit PageSpeed, Core Web Vitals, and structural schema health to maintain critical performance compliance across targets.
             </div>
         </div>
     """, unsafe_allow_html=True)
-    st.link_button("Execute Audit ↗️", "https://seo-vitals-auditor-24rd7b8c5wqqphqrs8nbhm.streamlit.app/", use_container_width=True, type="primary")
+    st.link_button("Execute Audit ↗️", "https://page-speed-auditor-growth99.streamlit.app/", use_container_width=True, type="primary")
 
 with col3:
     st.markdown("""
@@ -167,4 +163,4 @@ footer_left, footer_right = st.columns(2)
 with footer_left:
     st.caption("© 2026 Growth99 Automation Systems. All rights reserved.")
 with footer_right:
-    st.markdown("<p style='text-align: right; color: gray; font-size: 0.8rem; opacity: 0.4;'>v4.8 // Production Architecture</p>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: right; color: gray; font-size: 0.8rem; opacity: 0.4;'>v5.0 // Updated Navigation Array</p>", unsafe_allow_html=True)
