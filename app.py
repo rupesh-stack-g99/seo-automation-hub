@@ -72,19 +72,16 @@ st.markdown("""
 COUNTER_FILE = "visitor_count.txt"
 
 def get_exact_visitor_count():
-    # If the file doesn't exist yet, initialize it at 0
     if not os.path.exists(COUNTER_FILE):
         with open(COUNTER_FILE, "w") as f:
             f.write("0")
             
-    # Read the current count
     with open(COUNTER_FILE, "r") as f:
         try:
             count = int(f.read().strip())
         except ValueError:
             count = 0
             
-    # Increment count only once per page connection session load
     if 'tracked_session' not in st.session_state:
         st.session_state.tracked_session = True
         count += 1
@@ -93,8 +90,7 @@ def get_exact_visitor_count():
             
     return count
 
-# Run counter
-current_exact_visitors = get_exact_visitor_count()
+current_visitors = get_exact_visitor_count()
 
 # 4. Header Banner
 st.markdown("# ⚡ Growth99 SEO Automation Hub")
@@ -180,19 +176,17 @@ st.write("")
 st.write("")
 st.divider()
 
-# 8. Beautiful Native Traffic Metrics Panel (Replaces the broken image box flawlessly)
+# 8. Clean Live Hub Infrastructure Analytics Panel
 st.markdown("### 📈 Live Hub Infrastructure Analytics")
 st.caption("Real-time traffic counts tracked safely and directly on the host instance.")
 st.write("")
 
-metric_left, metric_center, metric_right = st.columns(3)
+metric_left, metric_right = st.columns(2)
 
 with metric_left:
-    st.metric(label="👥 Total Site Visitors (Exact)", value=f"{current_exact_visitors} Hits")
-with metric_center:
-    st.metric(label="🖥️ Server Platform Status", value="Stable / Online")
+    st.metric(label="👥 Total Site Visitors", value=f"{current_visitors} Hits")
 with metric_right:
-    st.metric(label="📡 Active Internal Links", value="3 / 3 Bound")
+    st.metric(label="🖥️ Server Platform Status", value="Stable / Online")
 
 # 9. Clean Minimalist Footer
 st.write("")
@@ -201,4 +195,4 @@ footer_left, footer_right = st.columns(2)
 with footer_left:
     st.caption("© 2026 Growth99 Automation Systems. All rights reserved.")
 with footer_right:
-    st.markdown("<p style='text-align: right; color: gray; font-size: 0.8rem; opacity: 0.4;'>v4.5 // Native Server Registry</p>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: right; color: gray; font-size: 0.8rem; opacity: 0.4;'>v4.6 // Production Architecture</p>", unsafe_allow_html=True)
