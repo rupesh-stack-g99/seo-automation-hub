@@ -150,33 +150,7 @@ st.write("")
 st.write("")
 st.divider()
 
-# 7. Sleek Tabbed Resource Navigator
-st.markdown("### 📁 Platform Manifest & System Infrastructure")
-st.write("")
-
-with st.container():
-    tab1, tab2, tab3 = st.tabs(["📋 Documentation Registry", "🔒 Compliance & Encryption", "⚙️ Global Network Cluster"])
-    
-    with tab1:
-        st.write("")
-        st.markdown("**Central Knowledge Hub**")
-        st.info("Access comprehensive platform configuration guides, technical layout metrics, automated structural schema onboarding guidelines, and environment platform migration playbooks.")
-        
-    with tab2:
-        st.write("")
-        st.markdown("**Security & Transit Specifications**")
-        st.success("End-to-end industry standard SSL protocols are active. Data processing pipelines connecting external platform engine arrays are fully sandboxed and logically isolated.")
-        
-    with tab3:
-        st.write("")
-        st.markdown("**Topology Architecture**")
-        st.warning("Running on an isolated, distributed microservices network topology. Individual runtime environments are actively maintained via secure remote server tracking endpoints.")
-
-st.write("")
-st.write("")
-st.divider()
-
-# 8. Clean Live Hub Infrastructure Analytics Panel
+# 7. Clean Live Hub Infrastructure Analytics Panel
 st.markdown("### 📈 Live Hub Infrastructure Analytics")
 st.caption("Real-time traffic counts tracked safely and directly on the host instance.")
 st.write("")
@@ -188,11 +162,11 @@ with metric_left:
 with metric_right:
     st.metric(label="🖥️ Server Platform Status", value="Stable / Online")
 
-# 9. Clean Minimalist Footer
+# 8. Clean Minimalist Footer
 st.write("")
 st.divider()
 footer_left, footer_right = st.columns(2)
 with footer_left:
     st.caption("© 2026 Growth99 Automation Systems. All rights reserved.")
 with footer_right:
-    st.markdown("<p style='text-align: right; color: gray; font-size: 0.8rem; opacity: 0.4;'>v4.6 // Production Architecture</p>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: right; color: gray; font-size: 0.8rem; opacity: 0.4;'>v4.7 // Production Architecture</p>", unsafe_allow_html=True)
