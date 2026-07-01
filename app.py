@@ -1,5 +1,4 @@
 import streamlit as st
-import os
 
 # 1. Page Configuration
 st.set_page_config(
@@ -68,40 +67,16 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# 3. Native, Error-Free Visitor Counter Logic
-COUNTER_FILE = "visitor_count.txt"
-
-def get_exact_visitor_count():
-    if not os.path.exists(COUNTER_FILE):
-        with open(COUNTER_FILE, "w") as f:
-            f.write("0")
-            
-    with open(COUNTER_FILE, "r") as f:
-        try:
-            count = int(f.read().strip())
-        except ValueError:
-            count = 0
-            
-    if 'tracked_session' not in st.session_state:
-        st.session_state.tracked_session = True
-        count += 1
-        with open(COUNTER_FILE, "w") as f:
-            f.write(str(count))
-            
-    return count
-
-current_visitors = get_exact_visitor_count()
-
-# 4. Header Banner
+# 3. Header Banner
 st.markdown("# ⚡ Growth99 SEO Automation Hub")
 st.markdown('<p class="main-subtitle">Unified Operations Center & Advanced Analytics Hub</p>', unsafe_allow_html=True)
 
-# 5. Tool Deployment Ribbon
+# 4. Tool Deployment Ribbon
 st.metric(label="Tools Connected", value="3 / 3 Active", delta="100% Operational")
 
 st.divider()
 
-# 6. Core Applications Section
+# 5. Core Applications Section
 st.markdown("### 🛠️ Core SEO Frameworks")
 st.write("")
 
@@ -140,27 +115,11 @@ with col3:
     """, unsafe_allow_html=True)
     st.link_button("Open Analytics ↗️", "https://gsc-seo-dashboard-growth99.streamlit.app/", use_container_width=True, type="primary")
 
-st.write("")
-st.write("")
-st.divider()
-
-# 7. Clean Live Hub Infrastructure Analytics Panel
-st.markdown("### 📈 Live Hub Infrastructure Analytics")
-st.caption("Real-time traffic counts tracked safely and directly on the host instance.")
-st.write("")
-
-metric_left, metric_right = st.columns(2)
-
-with metric_left:
-    st.metric(label="👥 Total Site Visitors", value=f"{current_visitors} Hits")
-with metric_right:
-    st.metric(label="🖥️ Server Platform Status", value="Stable / Online")
-
-# 8. Clean Minimalist Footer
+# 6. Clean Minimalist Footer
 st.write("")
 st.divider()
 footer_left, footer_right = st.columns(2)
 with footer_left:
     st.caption("© 2026 Growth99 Automation Systems. All rights reserved.")
 with footer_right:
-    st.markdown("<p style='text-align: right; color: gray; font-size: 0.8rem; opacity: 0.4;'>v5.0 // Updated Navigation Array</p>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: right; color: gray; font-size: 0.8rem; opacity: 0.4;'>v5.1 // Precision Minimal Architecture</p>", unsafe_allow_html=True)
